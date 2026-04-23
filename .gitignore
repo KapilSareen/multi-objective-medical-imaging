@@ -24,11 +24,11 @@ data/cache/
 nih_embeddings.npy
 *_embeddings.npy
 
-# Logs
-logs/
+# Logs (commit job logs, exclude other .log/.out/.err files)
+# logs/
 *.log
-*.out
-*.err
+# *.out
+# *.err
 
 # IDE / local tools
 .vscode/

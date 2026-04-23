@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/dhish_s/nsga2_medical_ensemble/scripts/01_download_metadata.py", line 87, in <module>
+    main()
+  File "/home/dhish_s/nsga2_medical_ensemble/scripts/01_download_metadata.py", line 47, in main
+    log_system_info()
+  File "/home/dhish_s/nsga2_medical_ensemble/scripts/utils.py", line 196, in log_system_info
+    import psutil
+ModuleNotFoundError: No module named 'psutil'

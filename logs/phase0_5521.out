@@ -1,0 +1,63 @@
+================================================================================
+[0;34mPHASE 0: ZCORE CORESET SELECTION[0m
+================================================================================
+Working directory: /home/dhish_s/nsga2_medical_ensemble
+Start time: 2026-04-18 02:15:45
+
+GPU: True
+
+================================================================================
+[0;34mSTEP 1/5: DOWNLOAD METADATA[0m
+================================================================================
+================================================================================
+PHASE 0 - STEP 1: DOWNLOAD NIH METADATA
+================================================================================
+
+============================================================
+SYSTEM INFORMATION
+============================================================
+OS: Linux 5.15.0-174-generic
+Python: 3.12.11
+CPU Count: 128 physical, 256 logical
+RAM: 1007.5 GB
+PyTorch: 2.6.0+cu124
+CUDA Available: True
+CUDA Device: NVIDIA RTX 6000 Ada Generation
+CUDA Memory: 47.5 GB
+============================================================
+
+
+⏭️  Skipping metadata download (already exists)
+   Location: /home/dhish_s/nsga2_medical_ensemble/data/raw/Data_Entry_2017_v2020.csv
+   Size: 7.50 MB
+
+================================================================================
+[0;34mSTEP 1.5/5: DOWNLOAD FULL NIH DATASET[0m
+================================================================================
+[1;33m⚠️  This downloads ~50GB and takes 1-3 hours[0m
+================================================================================
+PHASE 0 - STEP 1.5: DOWNLOAD NIH IMAGES VIA KAGGLEHUB
+================================================================================
+
+📥 Downloading 12 NIH ChestX-ray14 image archives (~42GB)
+   Using Kaggle API (kagglehub) - more reliable than NIH Box
+   This will take 1-3 hours depending on network speed
+   Target location: /home/dhish_s/nsga2_medical_ensemble/data/raw
+
+📦 Downloading dataset via Kaggle API...
+   (First download will be slow, subsequent runs use cache)
+Resuming download from 15924723712 bytes (29171426519 bytes left)...
+Resuming download to /home/dhish_s/.cache/kagglehub/datasets/nih-chest-xrays/data/3.archive (15924723712/45096150231) bytes left.
+❌ Kaggle download failed: The X-Goog-Hash header indicated a MD5 checksum of:
+
+  3dOsv6I632CsCDErPEBA4g==
+
+but the actual MD5 checksum of the downloaded contents was:
+
+  GeXD6XOhBxy/VgvjLe28rQ==
+
+
+💡 Make sure you're authenticated with Kaggle:
+   1. Go to https://www.kaggle.com/settings/account
+   2. Create API token (downloads kaggle.json)
+   3. Place at ~/.kaggle/kaggle.json

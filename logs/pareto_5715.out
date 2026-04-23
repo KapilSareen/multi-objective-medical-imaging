@@ -1,0 +1,40 @@
+==========================================
+SLURM Job: Visualize Pareto
+Job ID: 5715
+Node: ub
+==========================================
+================================================================================
+PHASE 3: PARETO FRONT ANALYSIS
+================================================================================
+
+📊 Loading NSGA-II results...
+   Pareto solutions: 100
+   Generations: 100
+   Total time: 2.7 min
+
+🎯 Finding knee point...
+   Knee point: Solution #24
+   AUC:        0.9866
+   ACE:        0.0053
+   Equity Gap: 0.0003
+
+📊 Creating visualizations...
+   Saved: /home/dhish_s/nsga2_medical_ensemble/results/analysis/pareto_3d.html
+   Saved: /home/dhish_s/nsga2_medical_ensemble/results/analysis/pareto_2d.html
+   Saved: /home/dhish_s/nsga2_medical_ensemble/results/analysis/knee_weights.html
+   Saved: /home/dhish_s/nsga2_medical_ensemble/results/analysis/knee_point.json
+   Saved: /home/dhish_s/nsga2_medical_ensemble/results/analysis/pareto_solutions.csv
+
+================================================================================
+✅ ANALYSIS COMPLETE
+================================================================================
+
+📊 View results:
+   3D Plot:  /home/dhish_s/nsga2_medical_ensemble/results/analysis/pareto_3d.html
+   2D Plots: /home/dhish_s/nsga2_medical_ensemble/results/analysis/pareto_2d.html
+   Weights:  /home/dhish_s/nsga2_medical_ensemble/results/analysis/knee_weights.html
+   Data:     /home/dhish_s/nsga2_medical_ensemble/results/analysis/pareto_solutions.csv
+================================================================================
+==========================================
+Job finished at: Thu Apr 23 06:20:38 AM UTC 2026
+==========================================

@@ -1,0 +1,40 @@
+================================================================================
+[0;34mPHASE 0: ZCORE CORESET SELECTION[0m
+================================================================================
+Working directory: /home/dhish_s/nsga2_medical_ensemble
+Start time: 2026-04-17 16:10:21
+
+GPU: True
+
+================================================================================
+[0;34mSTEP 1/5: DOWNLOAD METADATA[0m
+================================================================================
+================================================================================
+PHASE 0 - STEP 1: DOWNLOAD NIH METADATA
+================================================================================
+
+============================================================
+SYSTEM INFORMATION
+============================================================
+OS: Linux 5.15.0-174-generic
+Python: 3.12.11
+CPU Count: 128 physical, 256 logical
+RAM: 1007.5 GB
+PyTorch: 2.6.0+cu124
+CUDA Available: True
+CUDA Device: NVIDIA RTX 6000 Ada Generation
+CUDA Memory: 47.5 GB
+============================================================
+
+⏱️  Starting: Total metadata download
+   Start time: 2026-04-17 16:10:25
+
+📥 Downloading: Data_Entry_2017.csv
+   URL: https://nihcc.app.box.com/shared/static/3h3qpzqvp8ixkxd6rr5fy4uwyongviyw.csv
+   Output: /home/dhish_s/nsga2_medical_ensemble/data/raw/Data_Entry_2017.csv
+
+❌ Error downloading Data_Entry_2017.csv: 404 Client Error: Not Found for url: https://nihcc.app.box.com/public/static/3h3qpzqvp8ixkxd6rr5fy4uwyongviyw.csv
+   Please check your internet connection and try again
+✅ Completed: Total metadata download
+   Duration: 0.79 seconds
+   End time: 2026-04-17 16:10:26

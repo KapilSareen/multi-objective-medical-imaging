@@ -1,0 +1,81 @@
+==========================================
+SLURM Job: Baseline Comparisons
+Job ID: 5716
+Node: ub
+CPUs: 40
+==========================================
+================================================================================
+PHASE 4: BASELINE COMPARISONS + STATISTICAL ANALYSIS
+================================================================================
+
+📊 Loading cached predictions...
+   Samples: 73,719  Models: 7
+   Positive rate: 0.181
+   Gender: M=41,381  F=32,338
+
+📂 Loading NSGA-II results...
+   Pareto size: 100
+   Knee index:  24
+
+🔧 Building baselines...
+   Best single model: ResNet101 (AUC=0.9837)
+
+   Running 2-objective NSGA-II (AUC + equity, no calibration)...
+   Gen 20/100  elapsed=1.2m  eta=4.7m
+   Gen 40/100  elapsed=2.3m  eta=3.5m
+   Gen 60/100  elapsed=3.5m  eta=2.3m
+   Gen 80/100  elapsed=4.6m  eta=1.2m
+   Gen 100/100  elapsed=5.8m  eta=0.0m
+   2-obj Pareto size: 100, knee AUC=0.9872, gap=0.0004
+   2-obj run time: 5.8m
+
+📈 Evaluating 11 baselines with 1000 bootstrap samples...
+   (This may take a few minutes...)
+   [1/11] Single: DenseNet121
+         AUC=0.9796  ACE=0.0094  Gap=0.0022  (40s)
+   [2/11] Single: ResNet50
+         AUC=0.9814  ACE=0.0149  Gap=0.0011  (39s)
+   [3/11] Single: ResNet101
+         AUC=0.9837  ACE=0.0156  Gap=0.0012  (39s)
+   [4/11] Single: EfficientNet-B4
+         AUC=0.9730  ACE=0.0060  Gap=0.0007  (40s)
+   [5/11] Single: VGG16
+         AUC=0.9773  ACE=0.0149  Gap=0.0004  (39s)
+   [6/11] Single: Inception-v3
+         AUC=0.9461  ACE=0.0542  Gap=0.0020  (40s)
+   [7/11] Single: MobileNetV2
+         AUC=0.9678  ACE=0.0075  Gap=0.0006  (40s)
+   [8/11] Ensemble: Equal weights
+         AUC=0.9877  ACE=0.0211  Gap=0.0010  (39s)
+   [9/11] Ensemble: Greedy best (ResNet101)
+         AUC=0.9837  ACE=0.0156  Gap=0.0012  (39s)
+   [10/11] Ensemble: NSGA-II 3-obj (ours)
+         AUC=0.9866  ACE=0.0053  Gap=0.0003  (40s)
+   [11/11] Ensemble: NSGA-II 2-obj (AUC+equity)
+         AUC=0.9872  ACE=0.0097  Gap=0.0004  (39s)
+
+   Total evaluation time: 7.2m
+
+================================================================================
+RESULTS TABLE
+================================================================================
+
+Method                                               AUC        ACE   Equity Gap
+--------------------------------------------------------------------------------
+Single: DenseNet121                           0.9796 [0.9783-0.9809]  0.0094  0.0022
+Single: ResNet50                              0.9814 [0.9799-0.9829]  0.0149  0.0011
+Single: ResNet101                             0.9837 [0.9824-0.9850]  0.0156  0.0012
+Single: EfficientNet-B4                       0.9730 [0.9717-0.9744]  0.0060  0.0007
+Single: VGG16                                 0.9773 [0.9759-0.9787]  0.0149  0.0004
+Single: Inception-v3                          0.9461 [0.9440-0.9481]  0.0542  0.0020
+Single: MobileNetV2                           0.9678 [0.9662-0.9693]  0.0075  0.0006
+Ensemble: Equal weights                       0.9877 [0.9867-0.9886]  0.0211  0.0010
+Ensemble: Greedy best (ResNet101)             0.9837 [0.9823-0.9850]  0.0156  0.0012
+Ensemble: NSGA-II 3-obj (ours)                0.9866 [0.9854-0.9876]  0.0053  0.0003 ◀ OUR METHOD
+Ensemble: NSGA-II 2-obj (AUC+equity)          0.9872 [0.9862-0.9882]  0.0097  0.0004
+================================================================================
+
+📊 Permutation significance test: NSGA-II 3-obj vs Equal-weight ensemble
+==========================================
+Job finished at: Thu Apr 23 06:33:43 AM UTC 2026
+==========================================

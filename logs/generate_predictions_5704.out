@@ -1,0 +1,89 @@
+==========================================
+SLURM Job: Generate Predictions Cache
+Job ID: 5704
+Node: ub
+==========================================
+================================================================================
+PHASE 1.5: GENERATE PREDICTIONS CACHE
+================================================================================
+
+ Device: cuda
+
+================================================================================
+Model: DENSENET121
+   Loaded: /home/dhish_s/nsga2_medical_ensemble/models/backbones/densenet121.pt
+   Total samples: 73,719
+   Positive (Effusion): 13,307
+   Negative (No Finding): 60,412
+   Predictions: 73,719
+   Mean: 0.1768, Std: 0.3502
+
+================================================================================
+Model: RESNET50
+   Loaded: /home/dhish_s/nsga2_medical_ensemble/models/backbones/resnet50.pt
+   Total samples: 73,719
+   Positive (Effusion): 13,307
+   Negative (No Finding): 60,412
+   Predictions: 73,719
+   Mean: 0.1807, Std: 0.3667
+
+================================================================================
+Model: RESNET101
+   Loaded: /home/dhish_s/nsga2_medical_ensemble/models/backbones/resnet101.pt
+   Total samples: 73,719
+   Positive (Effusion): 13,307
+   Negative (No Finding): 60,412
+   Predictions: 73,719
+   Mean: 0.1804, Std: 0.3730
+
+================================================================================
+Model: EFFICIENTNET_B4
+   Loaded: /home/dhish_s/nsga2_medical_ensemble/models/backbones/efficientnet_b4.pt
+   Total samples: 73,719
+   Positive (Effusion): 13,307
+   Negative (No Finding): 60,412
+   Predictions: 73,719
+   Mean: 0.1792, Std: 0.3223
+
+================================================================================
+Model: VGG16
+   Loaded: /home/dhish_s/nsga2_medical_ensemble/models/backbones/vgg16.pt
+   Total samples: 73,719
+   Positive (Effusion): 13,307
+   Negative (No Finding): 60,412
+   Predictions: 73,719
+   Mean: 0.1814, Std: 0.3564
+
+================================================================================
+Model: INCEPTION_V3
+   Loaded: /home/dhish_s/nsga2_medical_ensemble/models/backbones/inception_v3.pt
+   Total samples: 73,719
+   Positive (Effusion): 13,307
+   Negative (No Finding): 60,412
+   Predictions: 73,719
+   Mean: 0.1429, Std: 0.3151
+
+================================================================================
+Model: MOBILENET_V2
+   Loaded: /home/dhish_s/nsga2_medical_ensemble/models/backbones/mobilenet_v2.pt
+   Total samples: 73,719
+   Positive (Effusion): 13,307
+   Negative (No Finding): 60,412
+   Predictions: 73,719
+   Mean: 0.1747, Std: 0.3177
+
+================================================================================
+P_cache shape: (73719, 7)
+Labels shape:  (73719,)
+Demographics:  (73719,)
+
+Saved to: /home/dhish_s/nsga2_medical_ensemble/data/cache
+  P_cache.npy, y_true.npy, demographics.npy
+  predictions_metadata.csv, predictions_summary.json
+
+================================================================================
+PHASE 1.5 COMPLETE
+================================================================================
+==========================================
+Job finished at: Thu Apr 23 06:10:19 AM UTC 2026
+==========================================

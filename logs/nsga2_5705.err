@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dhish_s/nsga2_medical_ensemble/nsga2/run_nsga2.py", line 311, in <module>
+    main()
+  File "/home/dhish_s/nsga2_medical_ensemble/nsga2/run_nsga2.py", line 191, in main
+    fitnesses = list(map(toolbox.evaluate, population))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dhish_s/nsga2_medical_ensemble/nsga2/run_nsga2.py", line 89, in evaluate_wrapper
+    return evaluate_ensemble(individual, _SHARED['P_cache'], _SHARED['y_true'], _SHARED['demographics'])
+                                         ~~~~~~~^^^^^^^^^^^
+KeyError: 'P_cache'
