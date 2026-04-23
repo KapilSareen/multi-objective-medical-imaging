@@ -45,11 +45,6 @@ Thumbs.db
 .ipynb_checkpoints/
 *.ipynb
 
-# Results
-results/
-plots/
-figures/
-
 # Temporary
 tmp/
 temp/
