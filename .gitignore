@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Data (don't commit large files)
+data/raw/
+data/test_subset/
+data/cache/
+*.npy
+*.tar.gz
+*.pkl
+*.h5
+*.pth
+*.pt
+*.ckpt
+
+# Embeddings
+nih_embeddings.npy
+*_embeddings.npy
+
+# Logs
+logs/
+*.log
+*.out
+*.err
+
+# IDE / local tools
+.vscode/
+.idea/
+.cursor/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Results
+results/
+plots/
+figures/
+
+# Temporary
+tmp/
+temp/
+test_*.png
+debug/
+
+# Timing reports
+timing_*.txt
+benchmark_*.json

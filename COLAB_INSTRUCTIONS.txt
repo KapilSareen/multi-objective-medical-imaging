@@ -1,0 +1,66 @@
+================================================================================
+GOOGLE COLAB SETUP FOR PHASE 0
+================================================================================
+
+OPTION A: Copy-Paste Script (Recommended)
+------------------------------------------
+1. Go to: https://colab.research.google.com/
+2. Create new notebook
+3. Copy entire phase0_colab.py content into cells
+4. Runtime → Change runtime type → GPU (T4)
+5. Run all cells
+
+OPTION B: Upload Our Scripts
+-----------------------------
+Since our scripts need actual NIH image downloads (~50GB), and Colab has
+limited storage, we recommend a HYBRID approach:
+
+================================================================================
+RECOMMENDED: HYBRID APPROACH (Cluster + Local)
+================================================================================
+
+Instead of Colab, use your CLUSTER GPU for Phase 0:
+
+1. Transfer scripts to cluster:
+   scp -r nsga2_medical_ensemble dhish_s@your-cluster:/mnt/home2/home/dhish_s/
+
+2. SSH to cluster and run Phase 0 there:
+   ssh dhish_s@your-cluster
+   cd nsga2_medical_ensemble
+   
+   # Use Slurm to run Phase 0 with GPU
+   srun --gres=gpu:1 --cpus-per-task=4 --mem=32G --time=04:00:00 \
+        bash scripts/run_phase0.sh
+
+3. After completion, coreset is already on cluster - no transfer needed!
+
+This is BETTER than Colab because:
+✅ Your cluster has unlimited storage
+✅ Coreset stays on cluster (no download/upload)
+✅ Same GPU (RTX 6000 > Tesla T4)
+✅ No Colab timeout issues
+
+================================================================================
+UPDATED WORKFLOW
+================================================================================
+
+Phase 0: ON CLUSTER (not local!)
+---------------------------------
+ssh dhish_s@cluster
+cd /mnt/home2/home/dhish_s/
+git clone <your-repo>  # or scp the folder
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+pip install torch torchvision tqdm numpy pandas requests Pillow
+pip install git+https://github.com/openai/CLIP.git
+
+# Run Phase 0 with Slurm GPU
+srun --gres=gpu:1 --cpus-per-task=8 --mem=64G --time=06:00:00 \
+     bash scripts/run_phase0.sh
+
+Phase 1+: ON CLUSTER (already there!)
+--------------------------------------
+Data is already on cluster, proceed with training!
+
