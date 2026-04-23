@@ -18,15 +18,17 @@ This repository demonstrates how to use **NSGA-II** to find optimal ensemble wei
 
 All analysis and visualizations are in the `results/` directory:
 
-- **Interactive Plots:** Browse `results/analysis/` and click any `.html` file to view
-  - `pareto_3d.html` — 3D Pareto front visualization
-  - `pareto_2d.html` — 2D trade-off projections
-  - `knee_weights.html` — Optimal ensemble model weights
+**Interactive Plots** — Open any `.html` file in a web browser:
+- `results/analysis/pareto_3d.html` — 3D Pareto front (trade-off between AUC, ACE, equity gap)
+- `results/analysis/pareto_2d.html` — 2D trade-off projections
+- `results/analysis/knee_weights.html` — Optimal ensemble model weights (knee point)
 
-- **Data:** 
-  - `results/analysis/baseline_comparison.csv` — Comparison of 11 baseline methods
-  - `results/analysis/knee_point.json` — Optimal solution weights and metrics
-  - `results/nsga2/pareto_*.npy` — Raw Pareto front data
+**Data Files:**
+- `results/analysis/pareto_solutions.csv` — All 100 Pareto solutions (weights + fitness values)
+- `results/analysis/knee_point.json` — Optimal solution weights and metrics
+- `results/nsga2/pareto_weights.npy` — Pareto front weights (100 × 7)
+- `results/nsga2/pareto_fitness.npy` — Fitness values (100 × 3: AUC, ACE, equity gap)
+- `results/nsga2/summary.json` — NSGA-II metadata (generations, population size, runtime)
 
 ### Baseline Comparison
 
@@ -69,26 +71,39 @@ Runtime and algorithmic parameters:
 ## How It Works
 
 ```
-Phase 1.5: Generate Predictions Cache
-├─ Run 7 models on 73,719 NIH ChestX-ray14 samples
-└─ Save: P_cache (73,719 × 7), labels, demographics
+Phase 0: Data Preparation (Optional)
+├─ Download NIH ChestX-ray14 dataset
+├─ Select coreset using ZCore (representative subset)
+└─ Output: ~74K labeled chest X-ray images
 
-Phase 2: NSGA-II Evolution
-├─ Initialize: 100 random weight vectors
+Phase 1: Model Training
+├─ Fine-tune 7 diverse CNN backbones on Pleural Effusion task
+│  └─ Models: DenseNet121, ResNet50/101, EfficientNet-B4, VGG16, Inception-v3, MobileNetV2
+├─ Train on full dataset (73,719 samples)
+└─ Output: 7 trained model checkpoints
+
+Phase 2: Generate Predictions Cache
+├─ Run all 7 models on 73,719 samples (inference)
+├─ Store: P_cache (73,719 × 7 predictions), labels, demographics
+└─ Output: Cached predictions for efficient multi-objective optimization
+
+Phase 3: NSGA-II Evolution
+├─ Initialize: 100 random ensemble weight vectors
 ├─ For 100 generations:
 │  ├─ Selection, crossover, mutation
 │  ├─ Evaluate: f1 (AUC), f2 (ACE), f3 (equity gap)
 │  └─ NSGA-II selection (100 survivors)
 └─ Output: Pareto front (~100 non-dominated solutions)
 
-Phase 3: Analysis
-├─ Visualize Pareto (3D + 2D plots)
-├─ Find knee point (best compromise)
-└─ Output: Interactive HTML plots, weights
+Phase 4: Pareto Analysis
+├─ Visualize Pareto (3D + 2D trade-off plots)
+├─ Find knee point (best compromise solution)
+└─ Output: Interactive HTML plots, optimal weights
 
-Phase 4: Baseline Comparisons
-├─ Evaluate 11 methods (7 singles, 4 ensembles)
-├─ 1000 bootstrap samples per method
+Phase 5: Baseline Comparisons & Statistics
+├─ Evaluate 11 methods (7 single models, 4 ensemble variants)
+├─ 1000 bootstrap samples per method (confidence intervals)
+├─ Permutation tests (statistical significance)
 └─ Output: Comparison table + p-values
 ```
 
