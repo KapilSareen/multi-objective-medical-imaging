@@ -71,10 +71,10 @@ Runtime and algorithmic parameters:
 ## How It Works
 
 ```
-Phase 0: Data Preparation (Optional)
+Phase 0: Data Preparation (Optional - SKIPPED)
 ├─ Download NIH ChestX-ray14 dataset
 ├─ Select coreset using ZCore (representative subset)
-└─ Output: ~74K labeled chest X-ray images
+└─ Note: Skipped in this run; using full 73,719 samples directly
 
 Phase 1: Model Training
 ├─ Fine-tune 7 diverse CNN backbones on Pleural Effusion task
@@ -147,6 +147,7 @@ nsga2_medical_ensemble/
 - **Task:** Pleural Effusion detection (binary)
 - **Samples:** 73,719 (Effusion + NoFinding)
 - **Split:** All samples used for NSGA-II (no held-out test in current version)
+- **Note:** Phase 0 (ZCore coreset selection) was skipped; full dataset used directly
 
 ## Technical Details
 
@@ -174,18 +175,40 @@ The 3-obj method outperforms all single models and equals 2-obj on AUC, while dr
 ### Interpretation
 The Pareto front visualizes the fundamental trade-off: improving one objective typically requires sacrificing others. The knee point balances all three.
 
+### Algorithm Comparison (NSGA-II vs LHFiD)
+
+We compare two many-objective evolutionary algorithms on the same 3-objective ensemble problem:
+
+| Algorithm | Framework | Reference |
+|-----------|-----------|-----------|
+| NSGA-II | DEAP | Deb et al. (2002) |
+| LHFiD | pymoo | Saxena et al. (IEEE TEC) |
+
+Both use: population ~100, 100 generations, same cached predictions, same fitness functions.
+
+Comparison metrics (generated after running both):
+- Hypervolume indicator (higher = better Pareto coverage)
+- IGD (lower = closer to combined reference front)
+- Knee-point metrics (AUC, ACE, equity gap)
+- Runtime
+
+Results and overlay plots are in `results/analysis/pareto_compare_*.html` and `algorithm_comparison.json`.
+
 ## Running the Pipeline
 
 This is a **results repository**—the code and outputs are included. To reproduce:
 
 1. Clone the repository
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run the NSGA-II optimization on your data (see scripts in `nsga2/` and `analysis/`)
-4. View results in `results/analysis/`
+3. Run NSGA-II: `sbatch jobs/run_nsga2.sh`
+4. Run LHFiD: `sbatch jobs/run_lhfid.sh`
+5. Run comparison (after both complete): `sbatch jobs/run_compare.sh`
+6. View results in `results/analysis/`
 
 ## References
 
 - **NSGA-II:** Deb et al. (2002) - "A fast and elitist multiobjective genetic algorithm: NSGA-II"
+- **LHFiD:** Saxena et al. (IEEE Transactions on Evolutionary Computation) - "LHFiD: A many-objective evolutionary algorithm"
 - **ACE:** Nixon et al. (2019) - "Measuring Calibration in Deep Learning"
 - **NIH ChestX-ray14:** Wang et al. (2017)
 - **TorchXRayVision:** Cohen et al. (2020)
